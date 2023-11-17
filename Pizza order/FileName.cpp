@@ -15,7 +15,7 @@ int pizza_num = 1;
 double total_cost_everything;
 
 void total_cost_calc();
-
+//ask for customer details and stores the infomation
 void Customer_details() {
 	cout << "What your name\n";
 	getline(cin, name);
@@ -24,7 +24,7 @@ void Customer_details() {
 	cout << "\nWhat your phone number\n";
 	cin >> phone;
 }
-
+//get the details for the pizza and stores them
 void pizza_details() {
 	cout << "\nHow many pizzas do you want\n";
 	cin >> amount_of_pizzas;
@@ -44,11 +44,13 @@ void pizza_details() {
 
 	cin >> toppings_want;
 	if (toppings_want == "yes") {
+		pizza_num = 1;
 		for (int i = 0; i < amount_of_pizzas; i++) {
-			cout << "\nHow many toppings do you what on pizza " << i << "\n";
+			cout << "\nHow many toppings do you what on pizza " << pizza_num << "\n";
 			int amount_of_toppings;
 			cin >> amount_of_toppings;
 			toppings[i] = amount_of_toppings;
+			pizza_num++;
 		}
 
 
@@ -56,7 +58,7 @@ void pizza_details() {
 
 }
 
-
+//see if the customer whats delivery 
 void delivery_system() {
 	cout << "\ndo you what delivery yes or no\n";
 	string delivery_want;
@@ -70,7 +72,7 @@ void delivery_system() {
 
 }
 
-
+//finds the costs of toppings and returns it for furcher use
 double toppings_cost(int i) {
 	if (toppings[i] == 1) {
 		return 0.75;
@@ -88,7 +90,7 @@ double toppings_cost(int i) {
 		return 0.00;
 	}
 }
-
+//finds the cost of the pizza depending on the size and adds topping costs as well
 void pizza_size_cost() {
 	
 
@@ -108,26 +110,11 @@ void pizza_size_cost() {
 
 }
 
-void total_cost_of_pizza() {
-	for (int i = 0; i < amount_of_pizzas; i++) {
-		if (size_pizza[i] == "small") {
-			total_cost = total_cost + (toppings_cost(i) + 3.25);
-		}
-		else if (size_pizza[i] == "median") {
-			total_cost = total_cost + (toppings_cost(i) + 5.50);
-		}
-		else if (size_pizza[i] == "large") {
-			total_cost = total_cost + (toppings_cost(i) + 7.15);
-		}
-	}
-
-
-
-}
 
 
 
 
+//works out and displays the bill
 void bill() {
 	cout << "\nName: " << name << "\nAddress: " << address << "\nPhone Number: " << phone;
 	pizza_size_cost();
