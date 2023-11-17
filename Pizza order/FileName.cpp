@@ -11,7 +11,7 @@ int phone, amount_of_pizzas;
 bool delivery;
 string total_cost_pizza = "0";
 double total_cost = 0;
-
+int pizza_num = 1;
 
 
 void Customer_details() {
@@ -30,18 +30,20 @@ void pizza_details() {
 		cout << "You can only order max 6 pizzas\n";
 		cin >> amount_of_pizzas;
 	}
+	int pizza_num = 1;
 	for (int i = 0; i < amount_of_pizzas; i++) {
-		cout << "\nWhat size do you what pizza " << i << "\n";
+		cout << "\nWhat size do you what pizza " << pizza_num << "\n";
 		string x = "";
 		cin >> x;
 		size_pizza[i] = x;
+		pizza_num++;
 	}
 	cout << "\nDo you what topping on any of your pizzas yes or no\n";
 
 	cin >> toppings_want;
 	if (toppings_want == "yes") {
 		for (int i = 0; i < amount_of_pizzas; i++) {
-			cout << "\nHow many toppings do you what on pizza \n" << i;
+			cout << "\nHow many toppings do you what on pizza " << i << "\n";
 			int amount_of_toppings;
 			cin >> amount_of_toppings;
 			toppings[i] = amount_of_toppings;
@@ -86,17 +88,19 @@ double toppings_cost(int i) {
 }
 
 void pizza_size_cost() {
+	
 
 	for (int i = 0; i < amount_of_pizzas; i++) {
 		if (size_pizza[i] == "small") {
-			cout << "\nPizza " << i << " costs " << char(156) << toppings_cost(i) + 3.25;
+			cout << "\nPizza " << pizza_num << " costs " << char(156) << toppings_cost(i) + 3.25;
 		}
 		else if (size_pizza[i] == "median") {
-			cout << "\nPizza " << i << " costs " << char(156) << toppings_cost(i) + 5.50;
+			cout << "\nPizza " << pizza_num << " costs " << char(156) << toppings_cost(i) + 5.50;
 		}
 		else if (size_pizza[i] == "large") {
-			cout << "\nPizza " << i << " costs " << char(156) << toppings_cost(i) + 7.15;
+			cout << "\nPizza " << pizza_num << " costs " << char(156) << toppings_cost(i) + 7.15;
 		}
+		pizza_num++;
 	}
 
 
@@ -125,7 +129,7 @@ void total_cost_of_pizza() {
 void bill() {
 	cout << "\nName: " << name << "\nAddress: " << address << "\nPhone Number: " << phone;
 	pizza_size_cost();
-	cout << "Total cost: " << char(156) << total_cost;
+	cout << "\nTotal cost: " << char(156) << total_cost;
 
 
 
@@ -134,7 +138,9 @@ void bill() {
 
 }
 
-
+//make phone number max lenght and min
+//add inter check and letter check
+//make it so which pizza does not say 0
 
 
 
