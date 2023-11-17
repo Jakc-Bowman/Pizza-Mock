@@ -12,7 +12,9 @@ bool delivery;
 string total_cost_pizza = "0";
 double total_cost = 0;
 int pizza_num = 1;
+double total_cost_everything;
 
+void total_cost_calc();
 
 void Customer_details() {
 	cout << "What your name\n";
@@ -129,19 +131,39 @@ void total_cost_of_pizza() {
 void bill() {
 	cout << "\nName: " << name << "\nAddress: " << address << "\nPhone Number: " << phone;
 	pizza_size_cost();
-	cout << "\nTotal cost: " << char(156) << total_cost;
-
-
-
-
-
+	cout << "\nTotal cost: ";
+	total_cost_calc();
 
 }
+
+void total_cost_calc() {
+	for (int i = 0; i < amount_of_pizzas; i++) {
+		if (size_pizza[i] == "small") {
+			total_cost_everything = total_cost_everything + (toppings_cost(i) + 3.25);
+		}
+		else if (size_pizza[i] == "median") {
+			total_cost_everything = total_cost_everything + (toppings_cost(i) + 5.50);
+		}
+		else if (size_pizza[i] == "large") {
+			total_cost_everything = total_cost_everything + (toppings_cost(i) + 7.15);
+		}
+	}
+	if (delivery == true) {
+		total_cost_everything = total_cost_everything + 2.50;
+	}
+	
+	if (total_cost_everything >= 20) {
+		total_cost_everything = total_cost_everything * 0.9;
+	}
+	cout << char(156) << total_cost_everything;
+}
+
+
 
 //make phone number max lenght and min
 //add inter check and letter check
 //make it so which pizza does not say 0
-
+//total cost
 
 
 int main() {
