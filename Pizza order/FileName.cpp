@@ -1,18 +1,20 @@
 #include <iostream>
 #include<conio.h>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
-string name, address, toppings_want;
+string name, address, toppings_want, phone;
 string size_pizza[6];
 int toppings[10];
-int phone, amount_of_pizzas;
+int amount_of_pizzas;
 bool delivery;
 string total_cost_pizza = "0";
 double total_cost = 0;
 int pizza_num = 1;
 double total_cost_everything;
+
 
 void total_cost_calc();
 //ask for customer details and stores the infomation
@@ -23,6 +25,13 @@ void Customer_details() {
 	getline(cin, address);
 	cout << "\nWhat your phone number\n";
 	cin >> phone;
+	while (phone.size() > 11 or phone.size() < 10) {
+		cout << "\nPhone Number to long or short ,try again\n";
+		cin >> phone;
+	 }
+		
+	
+	
 }
 //get the details for the pizza and stores them
 void pizza_details() {
@@ -37,8 +46,13 @@ void pizza_details() {
 		cout << "\nWhat size do you what pizza " << pizza_num << "\n";
 		string x = "";
 		cin >> x;
+		while (x != "small" && x != "median" && x != "large") {
+			cout << "\nSmall ,Median and Large are the only options\n";
+			cin >> x;
+		}
 		size_pizza[i] = x;
 		pizza_num++;
+		
 	}
 	cout << "\nDo you what topping on any of your pizzas yes or no\n";
 
@@ -158,5 +172,6 @@ int main() {
 	pizza_details();
 	delivery_system();
 	bill();
+	_getch();
 	return 0;
 }
