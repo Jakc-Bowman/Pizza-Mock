@@ -159,7 +159,7 @@ void total_cost_calc() {
 	cout << char(156) << total_cost_everything;
 }
 
-
+//add the discount
 
 //make phone number max lenght and min
 //add inter check and letter check
